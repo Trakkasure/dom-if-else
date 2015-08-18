@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>DOM-ELSE Component Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../dom-if-else.html">
+  </head>
+  <body>
+      <h1>DOM-ELSE demo</h1>
+
+    <div>
+      <button onclick="clicked(1)">Toggle 1</button>
+      <template is="dom-if-else" id="domIf1" if>
+        <if-then>
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          Stuff
+          <div>4</div>
+        </if-then>
+        <if-else>
+          <div>e1</div>
+          <div>e2</div>
+          More stuff
+          <div>e3</div>
+        </if-else>
+      </template>
+    </div>
+    <!--
+    <div>
+      <button onclick="clicked(4)">Toggle 4</button>
+      <template id="domIf4" is="dom-if" if>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        Stuff
+        <div>4</div>
+        <button onclick="clicked(5)">Toggle 5</button>
+        <template id="domIf5" is="dom-if">
+          <div>Embedded If</div>
+          <div>Maybe this will work</div>
+          Not wrapped in a span.
+          <div>Third line</div>
+          <template is="dom-else" id="else4">
+            <div>e1</div>
+            <div>e2</div>
+            More stuff
+            <div>e3</div>
+          </template>
+        </template>
+      </template>
+    </div>
+
+    <div>
+      <button onclick="clicked(2)">Toggle 2</button>
+      <template id="domIf2" is="dom-if" if>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        Stuff
+        <div>4</div>
+        <template is="dom-else" id="else2">
+          <button onclick="clicked(3)">Toggle 3</button>
+          <template id="domIf3" is="dom-if" if>
+            <div>Embedded If</div>
+            <div>Maybe this will work</div>
+            Not wrapped in a span.
+            <div>Third line</div>
+            <template is="dom-else" id="else3">
+              <div>e1</div>
+              <div>e2</div>
+              More stuff
+              <div>e3</div>
+            </template>
+          </template>
+        </template>
+      </template>
+    </div>
+-->
+    <script>
+       function clicked(n) {
+           var t = document.querySelector('#domIf'+n);
+           t.if=!t.if;
+       }
+    </script>
+
+  </body>
+</html>
