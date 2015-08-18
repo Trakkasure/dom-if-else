@@ -1,5 +1,5 @@
 # dom-if-else
-Modification of dom-if to be if/else complient.
+Modification of dom-if to be if/else compliant.
 
 This is a Polymer Element providing the missing ELSE portion for the "DOM-IF" template by way of an alterative to DOM-IF.
 
