@@ -1,0 +1,13 @@
+{
+  "name": "dom-if-else",
+  "description": "",
+  "author": "Brandon Myers",
+  "license": "MIT",
+  "scripts": {
+    "test": "wct --plugin sauce"
+  },
+  "devDependencies": {
+    "web-component-tester": "*",
+    "bower": "*"
+  }
+}
