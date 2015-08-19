@@ -8,7 +8,6 @@
   },
   "devDependencies": {
     "web-component-tester": "*",
-    "sauce-connect": "*",
     "bower": "*"
   }
 }
