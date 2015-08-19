@@ -1,5 +1,5 @@
 module.exports = {
-    verbose: false,
+    verbose: true,
     testTimeout: 5 * 60 * 1000,
     plugins: {
         sauce: {
