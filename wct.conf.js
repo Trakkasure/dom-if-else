@@ -1,3 +1,4 @@
+
 module.exports = {
     verbose: true,
     testTimeout: 5 * 60 * 1000,
@@ -10,7 +11,8 @@ module.exports = {
                 "OS X 10.10/chrome",
                 "OS X 10.10/firefox",
                 "OS X 10.10/safari"
-            ]
+            ],
+            'tunnelId': process.env.TRAVIS_JOB_NUMBER
         }
     }
 };
