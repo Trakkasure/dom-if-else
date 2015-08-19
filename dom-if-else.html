@@ -50,6 +50,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         value: false,
         observer: '_queueRender'
       },
+      /**
+       * ***** Feature not enabled *****
+       * When true, elements will be removed from DOM and discarded when `if`
+       * becomes false and re-created and added back to the DOM when `if`
+       * becomes true.  By default, stamped elements will be hidden but left
+       * in the DOM when `if` becomes false, which is generally results
+       * in better performance.
+       */
+      "restamp": {
+        type: Boolean,
+        value: false
+        //observer: '_queueRender'
+      }
     },
     behaviors: [
       Polymer.Templatizer
@@ -133,8 +146,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               if (hide) {
                 n.__polymerDisplay__ = n.style.display;
                 n.style.display = 'none';
+                n.setAttribute('hidden',true);
               } else {
                 n.style.display = n.__polymerDisplay__;
+                n.removeAttribute('hidden');
               }
             }
           }
