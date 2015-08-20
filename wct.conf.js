@@ -22,13 +22,14 @@ module.exports = {
 
             var payload = {
               "name": process.env.TRAVIS_BRANCH+"_"+browser.browserName+"@"+browser.platform,
-              "build": process.env.TRAVIS_BUILD_NUMBER*1,
-              "public": "shared"
+              "build": process.env.TRAVIS_BUILD_NUMBER
             };
             if (process.env.TRAVIS_TAG)
                 payload.tags = [process.env.TRAVIS_TAG];
 
             wct.emit('log:debug', 'Updating sauce job ', sessionId, payload);
+            wct.emit('log:debug', 'Browser Info ', JSON.stringify(browser));
+            wct.emit('log:debug', 'stats Info ', JSON.stringify(stats));
 
             var username  = process.env.SAUCE_USERNAME;
             var accessKey = process.env.SAUCE_ACCESS_KEY;
