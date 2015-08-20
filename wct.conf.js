@@ -18,7 +18,7 @@ module.exports = {
     },
     registerHooks: function(wct) {
          wct.on('browser-end', function(def, error, stats, sessionId, browser) {
-            if (eachCapabilities.length === 0 || !sessionId) return;
+            if (!sessionId) return;
 
             if (browser._keepalive) {
               clearInterval(browser._keepalive);
