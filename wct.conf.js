@@ -40,9 +40,9 @@ module.exports = {
                   body: payload
                 }).on('response',function(response) {
                     wct.emit('log:debug',
-                        'Update complete https://saucelabs.com/rest/v1/' + encodeURIComponent(username) + '/jobs/' + encodeURIComponent(sessionId)
-                       +"\nResponse: "+response.statusCode+" "+response.statusText+"\n"
-                    );
+                        'Update complete https://saucelabs.com/rest/v1/' + encodeURIComponent(username) + '/jobs/' + encodeURIComponent(sessionId));
+                    wct.emit('log:debug',"Response: "+response.statusCode+" "+response.statusMessage);
+                    wct.emit('log:debug', JSON.stringify(response.rawHeaders));
                 });
             //},100);
           });
