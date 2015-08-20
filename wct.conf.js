@@ -27,7 +27,7 @@ module.exports = {
             var payload = {
               "name": process.env.TRAVIS_BRANCH+"_"+process.env.TRAVIS_COMMIT,
               "build": process.env.TRAVIS_BUILD_NUMBER,
-              "public": shared
+              "public": "shared"
             };
             if (process.env.TRAVIS_TAG)
                 payload.tag = process.env.TRAVIS_TAG;
