@@ -1,4 +1,3 @@
-var request = require('request');
 
 module.exports = {
     verbose: true,
