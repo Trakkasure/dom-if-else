@@ -20,30 +20,31 @@ module.exports = {
          wct.on('browser-end', function(def, error, stats, sessionId, browser) {
             if (!sessionId||!process.env.TRAVIS_COMMIT) return;
 
-            if (browser._keepalive) {
-              clearInterval(browser._keepalive);
-            }
-
             var payload = {
-              "name": process.env.TRAVIS_BRANCH+"_"+process.env.TRAVIS_COMMIT,
+              "name": process.env.TRAVIS_BRANCH+"_"+browser.browserName+"@"+browser.platform,
               "build": process.env.TRAVIS_BUILD_NUMBER*1,
               "public": "shared"
             };
             if (process.env.TRAVIS_TAG)
                 payload.tags = [process.env.TRAVIS_TAG];
 
-            wct.emit('log:debug', 'Updating sauce job', sessionId, payload);
+            wct.emit('log:debug', 'Updating sauce job ', sessionId, payload);
 
             var username  = process.env.SAUCE_USERNAME;
             var accessKey = process.env.SAUCE_ACCESS_KEY;
-            request.put({
-              url:  'https://saucelabs.com/rest/v1/' + encodeURIComponent(username) + '/jobs/' + encodeURIComponent(sessionId),
-              auth: {user: username, pass: accessKey},
-              json: true,
-              body: payload,
-            },function() {
-                wct.emit('log:debug', 'Update complete'+'https://saucelabs.com/rest/v1/' + encodeURIComponent(username) + '/jobs/' + encodeURIComponent(sessionId));
-            });
+            //setTimeout(function() {
+                request.put({
+                  url:  'https://saucelabs.com/rest/v1/' + encodeURIComponent(username) + '/jobs/' + encodeURIComponent(sessionId),
+                  auth: {user: username, pass: accessKey},
+                  json: true,
+                  body: payload
+                }).on('response',function(response) {
+                    wct.emit('log:debug',
+                        'Update complete https://saucelabs.com/rest/v1/' + encodeURIComponent(username) + '/jobs/' + encodeURIComponent(sessionId)
+                       +"\nResponse: "+response.statusCode+" "+response.statusText+"\n"
+                    );
+                });
+            //},100);
           });
     }
 };
