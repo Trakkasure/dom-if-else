@@ -26,11 +26,11 @@ module.exports = {
 
             var payload = {
               "name": process.env.TRAVIS_BRANCH+"_"+process.env.TRAVIS_COMMIT,
-              "build": process.env.TRAVIS_BUILD_NUMBER,
+              "build": process.env.TRAVIS_BUILD_NUMBER*1,
               "public": "shared"
             };
             if (process.env.TRAVIS_TAG)
-                payload.tag = process.env.TRAVIS_TAG;
+                payload.tags = [process.env.TRAVIS_TAG];
 
             wct.emit('log:debug', 'Updating sauce job', sessionId, payload);
 
@@ -41,6 +41,8 @@ module.exports = {
               auth: {user: username, pass: accessKey},
               json: true,
               body: payload,
+            }).then(function() {
+                wct.emit('log:debug', 'Update complete'+'https://saucelabs.com/rest/v1/' + encodeURIComponent(username) + '/jobs/' + encodeURIComponent(sessionId));
             });
           });
     }
