@@ -32,7 +32,7 @@ module.exports = {
 
             var username  = process.env.SAUCE_USERNAME;
             var accessKey = process.env.SAUCE_ACCESS_KEY;
-            //setTimeout(function() {
+            setTimeout(function() {
                 request.put({
                   url:  'https://saucelabs.com/rest/v1/' + encodeURIComponent(username) + '/jobs/' + encodeURIComponent(sessionId),
                   auth: {user: username, pass: accessKey},
@@ -44,7 +44,7 @@ module.exports = {
                     wct.emit('log:debug',"Response: "+response.statusCode+" "+response.statusMessage);
                     wct.emit('log:debug', JSON.stringify(response.rawHeaders));
                 });
-            //},100);
+            },500);
           });
     }
 };
