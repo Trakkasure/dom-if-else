@@ -4,8 +4,7 @@
   "author": "Brandon Myers",
   "license": "MIT",
   "scripts": {
-    "test": "wct --plugin sauce",
-    "post_test": "node update_sauce.js"
+    "test": "wct --plugin sauce"
   },
   "devDependencies": {
     "web-component-tester": "*",
