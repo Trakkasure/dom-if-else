@@ -22,30 +22,29 @@ module.exports = {
 
             var payload = {
               "name": process.env.TRAVIS_BRANCH+"_"+browser.browserName+"@"+browser.platform,
-              "build": process.env.TRAVIS_BUILD_NUMBER
+              "build": process.env.TRAVIS_BUILD_NUMBER,
+              "custom-data": stats
             };
             if (process.env.TRAVIS_TAG)
                 payload.tags = [process.env.TRAVIS_TAG];
 
             wct.emit('log:debug', 'Updating sauce job ', sessionId, payload);
             wct.emit('log:debug', 'Browser Info ', JSON.stringify(Object.keys(browser)));
-            wct.emit('log:debug', 'stats Info ', JSON.stringify(stats));
+            wct.emit('log:debug', 'def Info ', JSON.stringify(def));
 
             var username  = process.env.SAUCE_USERNAME;
             var accessKey = process.env.SAUCE_ACCESS_KEY;
-            setTimeout(function() {
-                request.put({
-                  url:  'https://saucelabs.com/rest/v1/' + encodeURIComponent(username) + '/jobs/' + encodeURIComponent(sessionId),
-                  auth: {user: username, pass: accessKey},
-                  json: true,
-                  body: payload
-                }).on('response',function(response) {
-                    wct.emit('log:debug',
-                        'Update complete https://saucelabs.com/rest/v1/' + encodeURIComponent(username) + '/jobs/' + encodeURIComponent(sessionId));
-                    wct.emit('log:debug',"Response: "+response.statusCode+" "+response.statusMessage);
-                    wct.emit('log:debug', JSON.stringify(response.rawHeaders));
-                });
-            },500);
+            request.put({
+              url:  'https://saucelabs.com/rest/v1/' + encodeURIComponent(username) + '/jobs/' + encodeURIComponent(sessionId),
+              auth: {user: username, pass: accessKey},
+              json: true,
+              body: payload
+            }).on('response',function(response) {
+                wct.emit('log:debug',
+                    'Update complete https://saucelabs.com/rest/v1/' + encodeURIComponent(username) + '/jobs/' + encodeURIComponent(sessionId));
+                wct.emit('log:debug',"Response: "+response.statusCode+" "+response.statusMessage);
+                wct.emit('log:debug', JSON.stringify(response.rawHeaders));
+            });
           });
     }
 };
