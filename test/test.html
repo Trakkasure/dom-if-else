@@ -124,7 +124,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
         assert.equal(stamped.length, 1, 'total stamped count incorrect');
         assert.equal(stamped[0].prop, 'prop1');
-        assert.notEqual((stamped[0]).offsetParent, null, 'stamped 1 visibility wrong');
+        assert.ok((stamped[0]).getClientRects().length, 'stamped 1 visibility wrong');
       });
 
       test('show 2', function() {
@@ -138,8 +138,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         assert.equal(stamped.length, 2, 'total stamped count incorrect');
         assert.equal(stamped[0].prop, 'prop1');
         assert.equal(stamped[1].prop, 'prop2');
-        assert.notEqual((stamped[0]).offsetParent, null, 'stamped 1 visibility wrong');
-        assert.notEqual((stamped[1]).offsetParent, null, 'stamped 2 visibility wrong');
+        assert.ok((stamped[0]).getClientRects().length, 'stamped 1 visibility wrong');
+        assert.ok((stamped[1]).getClientRects().length, 'stamped 2 visibility wrong');
       });
 
       test('show 3', function() {
@@ -154,9 +154,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         assert.equal(stamped[0].prop, 'prop1');
         assert.equal(stamped[1].prop, 'prop2');
         assert.equal(stamped[2].prop, 'prop3');
-        assert.notEqual((stamped[0]).offsetParent, null, 'stamped 1 visibility wrong');
-        assert.notEqual((stamped[1]).offsetParent, null, 'stamped 2 visibility wrong');
-        assert.notEqual((stamped[2]).offsetParent, null, 'stamped 3 visibility wrong');
+        assert.ok((stamped[0]).getClientRects().length, 'stamped 1 visibility wrong');
+        assert.ok((stamped[1]).getClientRects().length, 'stamped 2 visibility wrong');
+        assert.ok((stamped[2]).getClientRects().length, 'stamped 3 visibility wrong');
       });
 
       test('hide 3', function() {
@@ -164,9 +164,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         individual.render();
         var stamped = Polymer.dom(individual.root).querySelectorAll('*:not(template):not(span):not(if-then)');
         assert.equal(stamped.length, 3, 'total stamped count incorrect');
-        assert.notEqual(stamped[0].offsetParent, null, 'stamped 1 visibility wrong');
-        assert.notEqual(stamped[1].offsetParent, null, 'stamped 2 visibility wrong');
-        assert.equal(stamped[2].offsetParent, null, 'stamped 3 visibility wrong');
+        assert.ok(stamped[0].getClientRects().length, 'stamped 1 visibility wrong');
+        assert.ok(stamped[1].getClientRects().length, 'stamped 2 visibility wrong');
+        assert.notOk(stamped[2].getClientRects().length, 'stamped 3 visibility wrong');
       });
 
       test('hide 2', function() {
@@ -174,9 +174,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         individual.render();
         var stamped = Polymer.dom(individual.root).querySelectorAll('*:not(template):not(span):not(if-then)');
         assert.equal(stamped.length, 3, 'total stamped count incorrect');
-        assert.notEqual((stamped[0]).offsetParent, null, 'stamped 1 visibility wrong');
-        assert.equal((stamped[1]).offsetParent, null, 'stamped 2 visibility wrong');
-        assert.equal((stamped[2]).offsetParent, null, 'stamped 3 visibility wrong');
+        assert.ok((stamped[0]).getClientRects().length, 'stamped 1 visibility wrong');
+        assert.notOk((stamped[1]).getClientRects().length, 'stamped 2 visibility wrong');
+        assert.notOk((stamped[2]).getClientRects().length, 'stamped 3 visibility wrong');
       });
 
       test('hide 1', function() {
@@ -184,9 +184,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         individual.render();
         var stamped = Polymer.dom(individual.root).querySelectorAll('*:not(template):not(span):not(if-then)');
         assert.equal(stamped.length, 3, 'total stamped count incorrect');
-        assert.equal((stamped[0]).offsetParent, null, 'stamped 1 visibility wrong');
-        assert.equal((stamped[1]).offsetParent, null, 'stamped 2 visibility wrong');
-        assert.equal((stamped[2]).offsetParent, null, 'stamped 3 visibility wrong');
+        assert.notOk((stamped[0]).getClientRects().length, 'stamped 1 visibility wrong');
+        assert.notOk((stamped[1]).getClientRects().length, 'stamped 2 visibility wrong');
+        assert.notOk((stamped[2]).getClientRects().length, 'stamped 3 visibility wrong');
       });
 
       test('show 1', function() {
@@ -194,9 +194,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         individual.render();
         var stamped = Polymer.dom(individual.root).querySelectorAll('*:not(template):not(span):not(if-then)');
         assert.equal(stamped.length, 3, 'total stamped count incorrect');
-        assert.notEqual((stamped[0]).offsetParent, null, 'stamped 1 visibility wrong');
-        assert.equal((stamped[1]).offsetParent, null, 'stamped 2 visibility wrong');
-        assert.equal((stamped[2]).offsetParent, null, 'stamped 3 visibility wrong');
+        assert.ok((stamped[0]).getClientRects().length, 'stamped 1 visibility wrong');
+        assert.notOk((stamped[1]).getClientRects().length, 'stamped 2 visibility wrong');
+        assert.notOk((stamped[2]).getClientRects().length, 'stamped 3 visibility wrong');
       });
 
       test('show 2', function() {
@@ -204,9 +204,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         individual.render();
         var stamped = Polymer.dom(individual.root).querySelectorAll('*:not(template):not(span):not(if-then)');
         assert.equal(stamped.length, 3, 'total stamped count incorrect');
-        assert.notEqual((stamped[0]).offsetParent, null, 'stamped 1 visibility wrong');
-        assert.notEqual((stamped[1]).offsetParent, null, 'stamped 2 visibility wrong');
-        assert.equal((stamped[2]).offsetParent, null, 'stamped 3 visibility wrong');
+        assert.ok((stamped[0]).getClientRects().length, 'stamped 1 visibility wrong');
+        assert.ok((stamped[1]).getClientRects().length, 'stamped 2 visibility wrong');
+        assert.notOk((stamped[2]).getClientRects().length, 'stamped 3 visibility wrong');
       });
 
       test('show 3', function() {
@@ -214,9 +214,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         individual.render();
         var stamped = Polymer.dom(individual.root).querySelectorAll('*:not(template):not(span):not(if-then)');
         assert.equal(stamped.length, 3, 'total stamped count incorrect');
-        assert.notEqual((stamped[0]).offsetParent, null, 'stamped 1 visibility wrong');
-        assert.notEqual((stamped[1]).offsetParent, null, 'stamped 2 visibility wrong');
-        assert.notEqual((stamped[2]).offsetParent, null, 'stamped 3 visibility wrong');
+        assert.ok((stamped[0]).getClientRects().length, 'stamped 1 visibility wrong');
+        assert.ok((stamped[1]).getClientRects().length, 'stamped 2 visibility wrong');
+        assert.ok((stamped[2]).getClientRects().length, 'stamped 3 visibility wrong');
       });
 
     });
@@ -279,7 +279,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         assert.equal(stamped.length, 3, 'total stamped count incorrect');
         stamped = Polymer.dom(inDocumentContainer).querySelectorAll('*:not(template)');
         stamped.forEach(function(n) {
-          assert.equal(n.offsetParent, null, 'node was not hidden but should have been');
+          assert.notOk(n.getClientRects().length, 'node was not hidden but should have been');
         });
       });
 
@@ -327,7 +327,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         stamped = Polymer.dom(inDocumentContainer).querySelectorAll('*:not(template):not(if-then)');
         stamped.forEach(function(n) {
-          assert.notEqual(n.offsetParent, null, 'node was hidden but should not have been');
+          assert.ok(n.getClientRects().length, 'node was hidden but should not have been');
         });
       });
 
@@ -373,7 +373,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         assert.equal(stamped.length, 3, 'total stamped count incorrect');
         stamped = Polymer.dom(unconfigured1.root).querySelectorAll('*:not(template):not(if-then)');
         stamped.forEach(function(n) {
-          assert.equal(n.offsetParent, null, 'node was not hidden but should have been');
+          assert.notOk(n.getClientRects().length, 'node was not hidden but should have been');
         });
         assert.equal(unconfigured1.domUpdateHandlerCount, 1);
       });
@@ -468,22 +468,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       test('item changed with no if field', function() {
         var showing;
         showing = structuredContainer.querySelector('.showing');
-        assert.notOk(showing.offsetParent);
+        assert.notOk(showing.getClientRects().length);
         structuredDomBind.item = {show: true};
         structuredDomIf.render();
         showing = structuredContainer.querySelector('.showing');
-        assert.ok(showing.offsetParent);
-        assert.notEqual((showing).offsetParent, null);
+        assert.ok(showing.getClientRects().length);
+        assert.ok(showing.getClientRects().length);
         structuredDomBind.item = {};
         structuredDomIf.render();
         showing = structuredContainer.querySelector('.showing');
         assert.ok(showing);
-        assert.equal((showing).offsetParent, null);
+        assert.notOk(showing.getClientRects().length);
         structuredDomBind.item = {show: true};
         structuredDomIf.render();
         showing = structuredContainer.querySelector('.showing');
         assert.ok(showing);
-        assert.notEqual((showing).offsetParent, null);
+        assert.ok(showing.getClientRects().length);
       });
 
       test('item changed with no if field (restamp)', function() {
@@ -492,19 +492,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         structuredDomIf.if = false;
         structuredDomIf.render();
         showing = structuredContainer.querySelector('.showing');
-        assert.notOk(showing.offsetParent);
+        assert.notOk(showing.getClientRects().length);
         structuredDomBind.item = {show: true};
         structuredDomIf.render();
         showing = structuredContainer.querySelector('.showing');
-        assert.ok(showing.offsetParent);
+        assert.ok(showing.getClientRects().length);
         structuredDomBind.item = {};
         structuredDomIf.render();
         showing = structuredContainer.querySelector('.showing');
-        assert.notOk(showing.offsetParent);
+        assert.notOk(showing.getClientRects().length);
         structuredDomBind.item = {show: true};
         structuredDomIf.render();
         showing = structuredContainer.querySelector('.showing');
-        assert.ok(showing.offsetParent);
+        assert.ok(showing.getClientRects().length);
       });
 
     });

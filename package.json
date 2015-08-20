@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "web-component-tester": "*",
+    "request": "^2.61.0",
     "bower": "*"
   }
 }
