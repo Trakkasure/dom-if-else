@@ -28,7 +28,7 @@ module.exports = {
                 payload.tags = [process.env.TRAVIS_TAG];
 
             wct.emit('log:debug', 'Updating sauce job ', sessionId, payload);
-            wct.emit('log:debug', 'Browser Info ', JSON.stringify(browser));
+            wct.emit('log:debug', 'Browser Info ', JSON.stringify(Object.keys(browser)));
             wct.emit('log:debug', 'stats Info ', JSON.stringify(stats));
 
             var username  = process.env.SAUCE_USERNAME;
