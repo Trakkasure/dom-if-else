@@ -41,7 +41,7 @@ module.exports = {
               auth: {user: username, pass: accessKey},
               json: true,
               body: payload,
-            }).then(function() {
+            },function() {
                 wct.emit('log:debug', 'Update complete'+'https://saucelabs.com/rest/v1/' + encodeURIComponent(username) + '/jobs/' + encodeURIComponent(sessionId));
             });
           });
