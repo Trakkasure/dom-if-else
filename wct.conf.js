@@ -1,7 +1,7 @@
 var request=require('request');
 
 module.exports = {
-    verbose: true,
+    verbose: false,
     testTimeout: 5 * 60 * 1000,
     plugins: {
         sauce: {
@@ -18,10 +18,10 @@ module.exports = {
     },
     registerHooks: function(wct) {
          wct.on('browser-end', function(def, error, stats, sessionId, browser) {
-            if (!sessionId||!process.env.TRAVIS_COMMIT) return;
+            if (!sessionId) return;
 
             var payload = {
-              "name": process.env.TRAVIS_BRANCH+"_"+browser.browserName+"@"+browser.platform,
+              "name": process.env.TRAVIS_BRANCH+"_"+def.browserName+"@"+def.platform,
               "build": process.env.TRAVIS_BUILD_NUMBER,
               "custom-data": stats
             };
@@ -29,8 +29,8 @@ module.exports = {
                 payload.tags = [process.env.TRAVIS_TAG];
 
             wct.emit('log:debug', 'Updating sauce job ', sessionId, payload);
-            wct.emit('log:debug', 'Browser Info ', JSON.stringify(Object.keys(browser)));
-            wct.emit('log:debug', 'def Info ', JSON.stringify(def));
+            //wct.emit('log:debug', 'Browser Info ', JSON.stringify(Object.keys(browser)));
+            //wct.emit('log:debug', 'def Info ', JSON.stringify(def));
 
             var username  = process.env.SAUCE_USERNAME;
             var accessKey = process.env.SAUCE_ACCESS_KEY;
@@ -41,9 +41,8 @@ module.exports = {
               body: payload
             }).on('response',function(response) {
                 wct.emit('log:debug',
-                    'Update complete https://saucelabs.com/rest/v1/' + encodeURIComponent(username) + '/jobs/' + encodeURIComponent(sessionId));
-                wct.emit('log:debug',"Response: "+response.statusCode+" "+response.statusMessage);
-                wct.emit('log:debug', JSON.stringify(response.rawHeaders));
+                    'Update complete https://saucelabs.com/rest/v1/' + encodeURIComponent(username) + '/jobs/' + encodeURIComponent(sessionId)+" ("+response.statusCode+") "+response.statusMessage);
+                //wct.emit('log:debug', JSON.stringify(response.rawHeaders));
             });
           });
     }
